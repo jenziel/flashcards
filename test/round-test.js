@@ -1,7 +1,7 @@
 const chai = require("chai");
 const expect = chai.expect;
 
-const { createCard, createDeck, countCards } = require("../src/card");
+const { createCard, createDeck } = require("../src/card");
 
 const {
   createRound,
@@ -92,8 +92,6 @@ describe("take turn", function () {
   let card1;
   let card2;
   let card3;
-  let guess1;
-  let guess2;
   let deck;
   let round;
   beforeEach(() => {
@@ -118,23 +116,20 @@ describe("take turn", function () {
     let cards = [card1, card2, card3];
     deck = createDeck(cards);
     round = createRound(deck);
-    guess1 = "pug";
-    guess2 = "sea otter";
   });
 
   it("should be a function", function () {
-    console.log("takeTurn test:", round);
     expect(takeTurn).to.be.a("function");
   });
 
   it("should increase the value of turn in the round object each time it is passed", function () {
-    takeTurn(guess2, round);
+    takeTurn("sea otter", round);
     takeTurn("spleen", round);
     expect(round.turns).to.deep.equal(2);
   });
 
   it("should update the current card to be the next card in the deck", function () {
-    takeTurn(guess2, round);
+    takeTurn("sea otter", round);
     takeTurn("spleen", round);
     expect(round.currentCard).to.deep.equal({
       id: 12,

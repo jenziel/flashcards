@@ -1,7 +1,12 @@
 const data = require("./data");
 const prototypeQuestions = data.prototypeData;
-const { createCard } = require("./card");
-const { createDeck, createRound } = require("./round");
+const { createCard, countCards, createDeck } = require("./card");
+const {
+  createRound,
+  takeTurn,
+  calculatePercentCorrect,
+  endRound,
+} = require("./round");
 
 const util = require("./util");
 
