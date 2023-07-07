@@ -1,12 +1,14 @@
-const data = require('./data');
+const data = require("./data");
 const prototypeQuestions = data.prototypeData;
-const {createCard } = require('./card')
-const { createDeck, createRound } = require('./round');
+const { createCard } = require("./card");
+const { createDeck, createRound } = require("./round");
 
-const util = require('./util');
+const util = require("./util");
 
 function printMessage(deck) {
-  console.log(`Welcome to FlashCards! You are playing with ${countCards(deck)} cards.
+  console.log(`Welcome to FlashCards! You are playing with ${countCards(
+    deck
+  )} cards.
   -----------------------------------------------------------------------`);
 }
 
@@ -14,11 +16,11 @@ function printQuestion(round) {
   util.main(round);
 }
 
-function start(){
-  console.log('hello')
-  let cards = prototypeQuestions.map(card => {
-    createCard(card.id, card.question, card.answers, card.correctAnswer)
-  })
-  return cards
+function start() {
+  console.log("hello");
+  let cards = prototypeQuestions.map((card) => {
+    createCard(card.id, card.question, card.answers, card.correctAnswer);
+  });
+  return cards;
 }
 module.exports = { printMessage, printQuestion, start };

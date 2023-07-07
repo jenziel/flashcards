@@ -1,9 +1,14 @@
 const chai = require("chai");
 const expect = chai.expect;
 
-const { createCard, createDeck } = require("../src/card");
+const { createCard, createDeck, countCards } = require("../src/card");
 
-const { createRound, takeTurn, endRound } = require("../src/round");
+const {
+  createRound,
+  takeTurn,
+  calculatePercentCorrect,
+  endRound,
+} = require("../src/round");
 
 describe("create round", function () {
   let card1;
@@ -152,6 +157,39 @@ describe("take turn", function () {
   });
   it("should return a correct message if guess is correct.", function () {
     expect(takeTurn("sea otter", round)).to.equal("correct!");
+  });
+});
+
+describe("calculate percent correct", function () {
+  let card1;
+  let card2;
+  let deck;
+  let round;
+  beforeEach(() => {
+    card1 = createCard(
+      1,
+      "What is Robbie's favorite animal",
+      ["sea otter", "pug", "capybara"],
+      "sea otter"
+    );
+    card2 = createCard(
+      14,
+      "What organ is Khalid missing?",
+      ["spleen", "appendix", "gallbladder"],
+      "gallbladder"
+    );
+
+    let cards = [card1, card2];
+    deck = createDeck(cards);
+    round = createRound(deck);
+  });
+  it("should be a function", function () {
+    expect(calculatePercentCorrect).to.be.a("function");
+  });
+  it("should return the percentage of correct guesses for that round", function () {
+    takeTurn("pug", round);
+    takeTurn("gallbladder", round);
+    expect(calculatePercentCorrect(round)).to.deep.equal(50);
   });
 });
 
