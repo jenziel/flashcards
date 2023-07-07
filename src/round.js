@@ -1,19 +1,34 @@
-function takeTurn() {
-
+const createRound = (deck) => {
+    const round = {
+        deck: deck,
+        turns: 0,
+        incorrectGuesses: [],
+        currentCard: deck[0],
+        }
+    return round
 }
 
-const evaluateGuess = (guess, correctAnswer) => {
+const takeTurn = (guess, round) => {
+    let index = round.turns 
+    let correctAnswer = round.deck[index].correctAnswer
+    if (guess !== correctAnswer){
+        round.incorrectGuesses.push(round.deck[index].id)
+    }
+    round.turns += 1;
+    round.currentCard = round.deck[round.turns]
     if (guess !== correctAnswer){
         return 'incorrect!'
-    } else {return 'correct!'}
+    } else return 'correct!'
 }
-function endRound() {
+
+
+const endRound = () => {
 
 }
 
 
 
 module.exports = {
+    createRound,
     takeTurn,
-    evaluateGuess,
     endRound}
