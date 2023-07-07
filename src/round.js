@@ -31,12 +31,18 @@ const calculatePercentCorrect = (round) => {
   return Math.round(percentCorrect);
 };
 
-const endRound = () => {};
+const endRound = (round) => {
+  console.log(
+    `** Round over! ** You answered ${[
+      calculatePercentCorrect(round),
+    ]}% of the questions correctly!`
+  );
+  return `** Round over! ** You answered ${[
+    calculatePercentCorrect(round),
+  ]}% of the questions correctly!`;
+};
 
 module.exports = {
-  // createCard,
-  // createDeck,
-  // countCards,
   createRound,
   takeTurn,
   calculatePercentCorrect,

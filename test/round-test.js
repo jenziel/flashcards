@@ -160,7 +160,7 @@ describe("take turn", function () {
   });
 });
 
-describe("calculate percent correct", function () {
+describe("end of game", function () {
   let card1;
   let card2;
   let deck;
@@ -183,7 +183,7 @@ describe("calculate percent correct", function () {
     deck = createDeck(cards);
     round = createRound(deck);
   });
-  it("should be a function", function () {
+  it("should have a calculatePercentCorrect function", function () {
     expect(calculatePercentCorrect).to.be.a("function");
   });
   it("should return the percentage of correct guesses for that round", function () {
@@ -191,10 +191,14 @@ describe("calculate percent correct", function () {
     takeTurn("gallbladder", round);
     expect(calculatePercentCorrect(round)).to.deep.equal(50);
   });
-});
-
-describe("end round", function () {
-  it("should be a function", function () {
+  it("should have an endRound function", function () {
     expect(endRound).to.be.a("function");
+  });
+  it("should print a message describing the percent correct for that round.", function () {
+    takeTurn("pug", round);
+    takeTurn("gallbladder", round);
+    expect(endRound(round)).to.equal(
+      "** Round over! ** You answered 50% of the questions correctly!"
+    );
   });
 });
