@@ -8,5 +8,3 @@ describe("start", function () {
     expect(start).to.be.a("function");
   });
 });
-
-// describe('getData', function)
