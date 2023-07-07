@@ -8,9 +8,21 @@ const createCard = (num, question, answers, correctAnswer) => {
     return card
 }
 
+const createDeck = (cards) => {
+    const deck = []
+    cards.forEach(card => {
+        deck.push(card)
+    })
+      return deck
+  }
 
+const countCards = (deck) => {
+    return deck.length
+}
 
 
 module.exports = {
     createCard,
+    createDeck,
+    countCards,
 }

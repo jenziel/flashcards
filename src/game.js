@@ -1,5 +1,8 @@
 const data = require('./data');
 const prototypeQuestions = data.prototypeData;
+const {createCard } = require('./card')
+const { createDeck, createRound } = require('./round');
+
 const util = require('./util');
 
 function printMessage(deck) {
@@ -11,4 +14,11 @@ function printQuestion(round) {
   util.main(round);
 }
 
-module.exports = { printMessage, printQuestion };
+function start(){
+  console.log('hello')
+  let cards = prototypeQuestions.map(card => {
+    createCard(card.id, card.question, card.answers, card.correctAnswer)
+  })
+  return cards
+}
+module.exports = { printMessage, printQuestion, start };

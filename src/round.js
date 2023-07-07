@@ -1,33 +1,44 @@
-const createDeck = (cards) => {
-    const deck = []
-    cards.forEach(card => {
-        deck.push(card)
-    })
-      return deck
-  }
-
-function countCards(deck){
-    return deck.length
+const createRound = (deck) => {
+    const round = {
+        deck: deck,
+        turns: 0,
+        incorrectGuesses: [],
+        currentCard: deck[0],
+        }
+    return round
 }
 
-function takeTurn() {
-
+const takeTurn = (guess, round) => {
+    // let correctAnswer = round.currentCard.correctAnswer;
+    // let checkTrue = evaluateGuess(guess, correctAnswer);
+    // if (checkTrue === 'incorrect!'){
+    //     round.incorrectGuesses.push(round.currentCard.id)
+    // }
+    round.turns += 1;
+    round.currentCard = round.deck[round.turns]
+    return round
 }
 
-const evaluateGuess = (guess, correctAnswer) => {
+const evaluateGuess = (guess, round) => {
+    const correctAnswer = round.deck[turns].correctAnswer
+    console.log(correctAnswer)
     if (guess !== correctAnswer){
         return 'incorrect!'
     } else {return 'correct!'}
 }
-function endRound() {
+
+const updateMistakes = (currentCard) => {
+    round.incorrectGuesses.push(currentCard.id)
+}
+
+const endRound = () => {
 
 }
 
 
 
 module.exports = {
-    createDeck,
-    countCards,
+    createRound,
     takeTurn,
     evaluateGuess,
     endRound}
